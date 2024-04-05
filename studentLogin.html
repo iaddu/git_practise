@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edu-Guide: Student Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('login_background_img.jpg'); /* Specify the path to your background image */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* No repeating of the background image */
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: white; /* Set text color to white for better visibility */
+        }
+
+        label {
+            display: inline-block;
+            text-align: left;
+            width: 70px; /* Adjust the width of the label */
+            margin-right: 10px;
+            color: white; /* Set text color to white for better visibility */
+        }
+
+        input[type="text"],
+        button {
+            display: inline-block;
+            width: 200px; /* Set the width of the input and button */
+            margin-bottom: 10px;
+            padding: 8px;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Login</h1>
+        <form id="loginForm" action="studentDashboard.html" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your Name" required><br>
+            <label for="rollNo">Roll No:</label>
+            <input type="text" id="rollNo" name="rollNo" placeholder="Enter your Roll Number" required><br>
+            <button type="submit" id="loginBtn">Login</button>
+            <div id="error-msg" class="error-message"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            var rollNoInput = document.getElementById('rollNo');
+            var rollNo = parseInt(rollNoInput.value);
+
+            if (isNaN(rollNo) || rollNo < 1 || rollNo > 1000) {
+                event.preventDefault(); // Prevent form submission
+                document.getElementById('error-msg').textContent = "Roll number should be a number between 1 and 1000.";
+                rollNoInput.focus(); // Set focus back to roll number input
+            }
+        });
+    </script>
+</body>
+</html>
